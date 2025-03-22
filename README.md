@@ -1,54 +1,65 @@
-# React + TypeScript + Vite
+# Formula Input Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This component mimics the formula input functionality from [Causal](https://my.causal.app/).
 
-Currently, two official plugins are available:
+![Formula Input Component](https://via.placeholder.com/800x400?text=Formula+Input+Component)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Add variable tags with autocomplete suggestions from API
+- Support for mathematical operators (+, -, *, /, ^, parentheses)
+- Support for numeric values including decimals
+- Keyboard navigation through formula elements
+- Tag dropdown with delete and properties options
+- Formula calculation with real-time results
+- Interactive UI with visual feedback
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js (v18 or higher)
+- npm or yarn
+
+## Installation
+
+Follow these steps to run the project locally:
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/casualapp-formulainput-frontendtask.git
+cd casualapp-formulainput-frontendtask
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
 ```
+or
+```bash
+yarn
+```
+
+3. **Start the development server**
+
+```bash
+npm run dev
+```
+or
+```bash
+yarn dev
+```
+
+4. **Open your browser**
+
+Navigate to [http://localhost:5173](http://localhost:5173) to see the application.
+
+## Technologies Used
+
+- React 19
+- TypeScript
+- Vite
+- TanStack React Query
+- Zustand for state management
+- Tailwind CSS for styling
+- ESLint + TypeScript ESLint
