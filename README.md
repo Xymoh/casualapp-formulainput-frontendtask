@@ -2,7 +2,7 @@
 
 This component mimics the formula input functionality from [Causal](https://my.causal.app/).
 
-![Formula Input Component Preview](https://casualapp-formulainput-frontendtask.vercel.app/)
+[Formula Input Component Preview](https://casualapp-formulainput-frontendtask.vercel.app/)
 
 ## Features
 
