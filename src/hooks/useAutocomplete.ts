@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 
-interface AutocompleteItem {
+export interface AutocompleteItem {
   id: string;
   name: string;
+  category: string;
+  value: string | number;
 }
 
-const fetchSuggestions = async (query: string): Promise<string[]> => {
+const fetchSuggestions = async (query: string): Promise<AutocompleteItem[]> => {
   try {
     const response = await fetch('https://652f91320b8d8ddac0b2b62b.mockapi.io/autocomplete');
     
@@ -14,12 +16,11 @@ const fetchSuggestions = async (query: string): Promise<string[]> => {
     }
     
     const data: AutocompleteItem[] = await response.json();
-    const suggestions = data.map(item => item.name);
     
-    if (!query) return suggestions;
+    if (!query) return data;
     
-    return suggestions.filter(item => 
-      item.toLowerCase().includes(query.toLowerCase())
+    return data.filter(item => 
+      item.name.toLowerCase().includes(query.toLowerCase())
     );
   } catch (error) {
     console.error('Error fetching autocomplete suggestions:', error);

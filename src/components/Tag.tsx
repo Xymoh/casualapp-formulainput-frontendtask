@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-
 import useFormulaStore from "../store/formulaStore";
 
 interface TagProps {
@@ -11,7 +10,7 @@ const Tag = ({ name, id }: TagProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const { setSelectedTag } = useFormulaStore();
+  const { setSelectedTag, deleteTag, autocompleteData } = useFormulaStore();
 
   const handleTagClick = () => {
     setSelectedTag(id);
@@ -19,7 +18,16 @@ const Tag = ({ name, id }: TagProps) => {
   };
 
   const handleOptionClick = (option: string) => {
-    console.log(`Selected ${option} for tag ${name}`);
+    if (option === "Delete") {
+      deleteTag(id);
+    } else if (option === "Properties") {
+      const tagData = autocompleteData.find((item) => item.name === name);
+      if (tagData) {
+        console.log("Tag Properties:", tagData);
+      } else {
+        console.log("No properties found for this tag");
+      }
+    }
     setShowDropdown(false);
   };
 
@@ -42,13 +50,7 @@ const Tag = ({ name, id }: TagProps) => {
         >
           <div className="py-1">
             <div
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-700"
-              onClick={() => handleOptionClick("Edit")}
-            >
-              Edit
-            </div>
-            <div
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-sm text-gray-700"
+              className="px-4 py-2 hover:bg-red-50 cursor-pointer text-sm text-red-600"
               onClick={() => handleOptionClick("Delete")}
             >
               Delete
