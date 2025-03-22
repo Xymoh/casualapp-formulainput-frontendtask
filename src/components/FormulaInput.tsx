@@ -16,6 +16,8 @@ const FormulaInput = () => {
   const [currentNumber, setCurrentNumber] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [highlightedSuggestion, setHighlightedSuggestion] =
+    useState<string>("");
 
   const {
     items,
@@ -41,7 +43,7 @@ const FormulaInput = () => {
     if (autocompleteItems?.length) {
       setAutocompleteData(autocompleteItems);
     }
-  }, [autocompleteItems.length]);
+  }, [autocompleteItems?.length, setAutocompleteData]);
 
   useEffect(() => {
     calculateResult();
@@ -92,9 +94,16 @@ const FormulaInput = () => {
         if (showAutocomplete && suggestions.length > 0) {
           commitCurrentNumber();
           e.preventDefault();
-          handleSelectSuggestion(suggestions[0]);
+          // Use the highlighted suggestion instead of always the first one
+          handleSelectSuggestion(highlightedSuggestion || suggestions[0]);
         } else if (currentNumber) {
           commitCurrentNumber();
+        }
+        break;
+      case "Escape":
+        if (showAutocomplete) {
+          e.preventDefault();
+          setShowAutocomplete(false);
         }
         break;
       case "+":
@@ -107,6 +116,8 @@ const FormulaInput = () => {
         commitCurrentNumber();
         e.preventDefault();
         addOperator(e.key);
+        setShowAutocomplete(true);
+        inputRef.current?.focus();
         break;
       case ".":
         if (inputValue === "" && !currentNumber.includes(".")) {
@@ -234,6 +245,8 @@ const FormulaInput = () => {
           <Autocomplete
             suggestions={suggestions}
             onSelect={handleSelectSuggestion}
+            onHighlight={setHighlightedSuggestion}
+            onEscape={() => setShowAutocomplete(false)}
           />
         )}
       </div>

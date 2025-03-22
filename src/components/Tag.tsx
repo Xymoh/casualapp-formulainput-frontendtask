@@ -34,13 +34,26 @@ const Tag = ({ name, id }: TagProps) => {
   return (
     <div className="relative inline-flex items-center">
       <div
-        className="bg-blue-100 text-blue-700 border border-blue-300 hover:bg-blue-200 
-                  px-3 py-1.5 rounded-md flex items-center cursor-pointer transition-colors 
-                  duration-150 font-medium text-base"
+        className="bg-blue-50 text-blue-700 border border-blue-100 hover:bg-blue-100 
+            px-3 py-1.5 rounded-md flex items-center cursor-pointer transition-colors 
+            duration-150 font-medium text-base"
         onClick={handleTagClick}
       >
         <span>{name}</span>
-        <span className="ml-1.5 text-xs text-blue-500">▾</span>
+        <span className="ml-1.5 text-blue-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-3 w-3"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span>
       </div>
 
       {showDropdown && (
